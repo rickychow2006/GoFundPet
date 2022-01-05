@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Form.css";
+import { connect } from "react-redux";
 
 const LoginForm = ({setOpenModal, setCurrentUser}) => {
   const [username, setUsername] = useState("");

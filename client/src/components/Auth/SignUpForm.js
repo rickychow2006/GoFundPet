@@ -1,56 +1,38 @@
 import {useState} from 'react';
 import "./Form.css";
+import { updateSignupForm } from "../../actions/signupForm";
+import { signup } from "../../actions/currentUser";
+import { connect } from 'react-redux';
 
+const SignupForm = ({signupFormData, updateSignupForm, signup}) => {
 
-const SignUpForm = ({setOpenModal, setCurrentUser}) => {
+  const handleOnChange = e => {
+    const { name, value } = e.target;
+    const updatedFormInfo = {
+      ...signupFormData,
+      [name]: value
+    };
+    updateSignupForm(updatedFormInfo);
+  };
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState("")
-
-  const handleSignUp = async (e) => {
+  const handleOnSubmit = e => {
     e.preventDefault();
-    if (confirmPassword === password ) {
-    fetch('/signup', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username, password})
-    })
-      .then(res => {
-      if (res.ok) {
-          res.json().then(user => {
-          setCurrentUser(user)
-          })
-          setOpenModal(false)
-      } else {
-        res.json()
-        .then(errors => {
-          setErrors(...errors)
-        })
-    }
-    })
-    } else { setErrors("Password doesn't match!")}
-  }
+    signup(signupFormData);
+  };
 
   return (
     <div className="form__wrapper">
-      <form onSubmit={handleSignUp}> 
+      <form onSubmit={handleOnSubmit}> 
         <div className="form__header">
           <h1>Sign up</h1>
-        </div>
-        <div className="errors">
-          {errors?
-            <div>{errors}</div>:""
-          }
         </div>
         <div className="form__input">
           <input 
               type="text"
               name="username"
               placeholder="Please Type Your Username..."
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={signupFormData.username}
+              onChange={handleOnChange}
           >
           </input>
         </div>
@@ -59,18 +41,8 @@ const SignUpForm = ({setOpenModal, setCurrentUser}) => {
               type="password"
               name="password"
               placeholder="Input PassWord..."
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-          >
-          </input>
-        </div>
-        <div className="form__input">
-          <input
-              type="password"
-              name="confirm_password"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={signupFormData.password}
+              onChange={handleOnChange}
           >
           </input>
         </div>
@@ -82,4 +54,12 @@ const SignUpForm = ({setOpenModal, setCurrentUser}) => {
   )
 };
 
-export default SignUpForm;
+const mapStateToProps = state => {
+  return {
+    signupFormData: state.signupForm
+  };
+};
+
+export default connect(mapStateToProps, { updateSignupForm, signup })(SignupForm);
+
+
