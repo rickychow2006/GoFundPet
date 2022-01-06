@@ -1,28 +1,25 @@
 import {useState} from 'react';
 import "./Form.css";
-import { updateSignupForm } from "../../actions/signupForm";
-import { signup } from "../../actions/currentUser";
 import { connect } from 'react-redux';
+import { signup } from '../../actions/session';
 
-const SignupForm = ({signupFormData, updateSignupForm, signup}) => {
+const SignupForm = ({user, signup}) => {
 
-  const handleOnChange = e => {
-    const { name, value } = e.target;
-    const updatedFormInfo = {
-      ...signupFormData,
-      [name]: value
-    };
-    updateSignupForm(updatedFormInfo);
-  };
+  const [username, setUsername] = useState("");
+  const [passowrd, setPassword] = useState("");
 
-  const handleOnSubmit = e => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    signup(signupFormData);
-  };
+    const data = await signup(username, passowrd);
+    if(data.error) {
+      alert(data.error)
+    }
+  }
 
   return (
+    <div className="form-page">
     <div className="form__wrapper">
-      <form onSubmit={handleOnSubmit}> 
+      <form onSubmit={handleSignUp} > 
         <div className="form__header">
           <h1>Sign up</h1>
         </div>
@@ -31,8 +28,8 @@ const SignupForm = ({signupFormData, updateSignupForm, signup}) => {
               type="text"
               name="username"
               placeholder="Please Type Your Username..."
-              value={signupFormData.username}
-              onChange={handleOnChange}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
           >
           </input>
         </div>
@@ -41,8 +38,8 @@ const SignupForm = ({signupFormData, updateSignupForm, signup}) => {
               type="password"
               name="password"
               placeholder="Input PassWord..."
-              value={signupFormData.password}
-              onChange={handleOnChange}
+              value={passowrd}
+              onChange={e => setPassword(e.target.value)}
           >
           </input>
         </div>
@@ -51,15 +48,16 @@ const SignupForm = ({signupFormData, updateSignupForm, signup}) => {
         </div>
       </form>
     </div>
+    </div>
   )
 };
 
 const mapStateToProps = state => {
   return {
-    signupFormData: state.signupForm
-  };
-};
+    user: state.session.user
+  }
+}
 
-export default connect(mapStateToProps, { updateSignupForm, signup })(SignupForm);
+export default connect(mapStateToProps, {signup})(SignupForm);
 
 

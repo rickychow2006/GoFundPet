@@ -1,49 +1,26 @@
-import { useState } from "react";
 import "./Form.css";
-import { connect } from "react-redux";
+import React, {useState, useEffect} from 'react';
+import { login } from "../../actions/session";
+import { connect } from 'react-redux';
 
-const LoginForm = ({setOpenModal, setCurrentUser}) => {
+const LoginForm = ({user, login}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username, password})
-    })
-      .then(res => {
-      if (res.ok) {
-          res.json()
-          .then(user => {
-          setCurrentUser(user)
-          setOpenModal(false)  
-          }
-          )
-
-      } else {
-          res.json()
-          .then(errors => {
-            setErrors(errors.error)
-          })
-      }
-      })
+    const data = await login(username, password);
+    if(data.error) {
+      console.log(data.error)
+    }
   }
 
   return (
+    <div className="form-page">
     <div className="form__wrapper">
       <form onSubmit={handleLogin}> 
         <div className="form__header">
           <h1>Login</h1>
-        </div>
-        <div className="errors">
-          {errors?
-            <div>{errors}</div>:""
-          }
         </div>
         <div className="form__input">
           <input 
@@ -51,7 +28,7 @@ const LoginForm = ({setOpenModal, setCurrentUser}) => {
               name="username"
               placeholder="Please Type Your Username..."
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={e => setUsername(e.target.value)}
           >
           </input>
         </div>
@@ -61,16 +38,25 @@ const LoginForm = ({setOpenModal, setCurrentUser}) => {
               name="password"
               placeholder="Input PassWord..."
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
           >
           </input>
         </div>
         <div className='form__button'>
-          <button type="submit">Login</button>
+          <button type="submit">Sign Up</button>
         </div>
       </form>
     </div>
-  );
+    </div>
+  )
 };
 
-export default LoginForm;
+const mapStateToProps = state => {
+  return {
+    user: state.session.user
+  }
+}
+
+export default connect(mapStateToProps, {login})(LoginForm);
+
+
