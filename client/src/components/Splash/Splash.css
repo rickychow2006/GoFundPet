@@ -1,0 +1,86 @@
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashpage-whole-main {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4ede4;
+}
+
+.splashpage-first {
+  display: grid; 
+  grid-column-gap: 5%;
+  grid-template-columns: 40% 55%;
+  align-items: center;
+  justify-items: self-end;
+  background-color: #f4ede4;
+  padding-top: 20px;
+}
+
+.splashpage-first-illuistration {
+  justify-content: center;
+  display: flex;
+  align-items: flex-start;
+}
+
+.img-container {
+  min-width: 294px;
+  min-height: 400px;
+}
+
+.splashpage-first-header {
+  text-align: left;
+  width: 100%;
+}
+
+.splashpage-first-bigtitle {
+  font-family: sans-serif;
+  position: relative;
+  min-height: 100px;
+  font-size: 40px;
+  font-weight: bold;
+  left: 4%;
+  line-height: 60px;
+}
+
+.splashpage-first-text {
+  position: relative;
+  z-index: 2;
+  padding-top: 10px;
+  left: 4%;
+  font-size: 20px;
+  max-width: 500px;
+  line-height: 27px;
+}
+
+.splashpage-second {
+  text-align: center;
+  min-height: 200px;
+  width: 100%;
+  background-color: #4a154b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashpage-second-title {
+  padding-top: 25px;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: white;
+}
+
+.splashpage-third-text {  
+  position: relative;
+  z-index: 2;
+  padding-top: 10px;
+  left: 4%;
+  font-size: 20px;
+  max-width: 1200px;
+  line-height: 27px;
+}
