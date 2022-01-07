@@ -1,43 +1,44 @@
 import { useState, useEffect } from "react";
-import LoginFormModal from "./components/Auth/LoginFormModal";
-import SignUpFormModal from "./components/Auth/SignUpFormModal";
+import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./components/NavBar/NavBar";
+import SignUpForm from "./components/Auth/SignUpForm";
+import LoginForm from "./components/Auth/LoginForm";
+import { Switch } from 'react-router-dom';
+import { authenticate } from "./actions/session";
+import FundingPage from "./components/FundingPage/FundingPage";
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import Splash from "./components/Splash/Splash";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
-  const [showSignUp, setShowSignUp] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-
-  const handleLogout = () => {
-    fetch("/logout", {method: "DELETE"}).then((r) => {
-      if (r.ok) {
-        setCurrentUser(null);
-      }
-    })
-  }
+  const user = useSelector(state => state.session.user)
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('/me',)
-        .then(res => {
-        if (res.ok) {
-            res.json().then(user => {
-            setCurrentUser(user)})
-        }})
-    }, [])
+    (async() => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
+
+  if (!loaded) {
+    return null;
+  };
   
   return (
     <div>
-          <button onClick = {() => {setShowLogin(!showLogin)}} style={{cursor: 'pointer'}}>
-              Login
-          </button>
-          {showLogin && <LoginFormModal setOpenModal = {setShowLogin} setCurrentUser = {setCurrentUser}/>}
-
-          <button onClick={() => {setShowSignUp(!showSignUp)}} style={{cursor: 'pointer'}} >
-              Sign Up
-          </button>
-          {showSignUp && <SignUpFormModal setOpenModal = {setShowSignUp} setCurrentUser = {setCurrentUser}/>}
-          
-          {currentUser? <button onClick={handleLogout}> Logout </button> : ""}
-          {currentUser? <h3>Welcome {currentUser.username}</h3> : ""}
+      <header>
+      <NavBar exact path ={['/', '/signup', '/login']} user={user}/>
+      </header>
+      <Switch >
+        <SignUpForm path='/signup' />
+        <LoginForm path='/login' />
+        <ProtectedRoute path="/users/:userId(\d+)">
+          <FundingPage/>
+        </ProtectedRoute>
+        <Splash path='/'/>
+      </Switch >
     </div>
   );
 }
