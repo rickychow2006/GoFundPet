@@ -25,7 +25,6 @@ export const signup = (username, password) => async (dispatch) => {
     if (data.error) {
       return data;
     };
-
     dispatch(setUser(data))
     return {};
   } catch (error) {
