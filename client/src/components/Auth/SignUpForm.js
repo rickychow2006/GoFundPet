@@ -1,10 +1,12 @@
-import {useState} from 'react';
-import "./Form.css";
-import { connect } from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import { signup } from '../../actions/session';
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import "./Form.css";
+
 
 const SignupForm = ({user, signup}) => {
-
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [passowrd, setPassword] = useState("");
 
@@ -15,6 +17,12 @@ const SignupForm = ({user, signup}) => {
       alert(data.error)
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      history.push(`/users/${user.id}/1`);
+    }
+  }, [user, history])
 
   return (
     <div className="form-page">

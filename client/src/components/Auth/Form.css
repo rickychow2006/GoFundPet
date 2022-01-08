@@ -1,10 +1,26 @@
+.form-page {
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-shadow: 0 10px 25px #ddd;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  max-width: 528px;
+  max-height: 635px;
+}
+
 .form__wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
-  padding: 70px 30px;
-  font-family: Circular -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,sans-serif;
+  padding: 30px 30px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form__header {
@@ -12,13 +28,16 @@
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  padding: 10px 0px ;
+  padding: 10px 0px;
+  font-weight: bold;
 }
 
 .form__header img {
-  height: 25px;
+  height: 30px;
   margin-left: 6px;
   margin-right: 6px;
+  font-size: 40px;
+  position: relative;
 }
 
 .errors {
@@ -28,7 +47,6 @@
   line-height: 18px;
   font-size: 14px;
   font-style: italic;
-  color: red;
 }
 
 .form__input {
@@ -39,11 +57,12 @@
 .form__input input {
   padding: 11px 12px;
   width: 100% ;
-  height: 32px;
+  height: 44px;
   outline-width: 0;
   border-radius: 4px;
   border: 1px solid rgba(29, 28, 29, 0.384);
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 .form__button {
@@ -58,10 +77,22 @@
   color: white;
   background-color: #4a154b;
   border-radius: 4px;
-  font-weight: 900;
+  font-weight: 700;
+  font-size: 18px;
+  height: 44px
 }
 
 .form__button button:hover{
   opacity: 0.9;
   cursor: pointer;
+}
+
+.login-input-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: darkslategray;
 }

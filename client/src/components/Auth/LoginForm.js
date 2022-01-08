@@ -1,9 +1,11 @@
-import "./Form.css";
 import React, {useState, useEffect} from 'react';
 import { login } from "../../actions/session";
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import "./Form.css";
 
 const LoginForm = ({user, login}) => {
+  const history = useHistory()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,9 +13,15 @@ const LoginForm = ({user, login}) => {
     e.preventDefault();
     const data = await login(username, password);
     if(data.error) {
-      console.log(data.error)
+      alert(data.error)
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      history.push(`/users/${user.id}/1`);
+    }
+  }, [user, history])
 
   return (
     <div className="form-page">
