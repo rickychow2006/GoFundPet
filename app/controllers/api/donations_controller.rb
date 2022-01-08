@@ -1,14 +1,7 @@
 class Api::DonationsController < ApplicationController
 
   def index 
-    if logged_in? 
-      donations = current_user.donations
-      render json: donations
-    else 
-      render json: {
-				error: "Login to view your donations."
-      }
-    end 
+      render json: Donation.all
   end 
 
   def show 
@@ -20,7 +13,6 @@ class Api::DonationsController < ApplicationController
     donation = Donation.new(donation_params)
 
     if donation.save 
-      session[:donation_id] = donation.id
       render json: donation, status: :created 
     else 
       render json: {
@@ -32,7 +24,7 @@ class Api::DonationsController < ApplicationController
   private 
 
   def donation_params 
-    params.require(:donation).permit(:amount, :message, :pet_id, :user_id)
+    params.require(:donation).permit(:amount, :pet_id, :user_id)
   end 
-  
+
 end
