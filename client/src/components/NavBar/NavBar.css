@@ -1,0 +1,71 @@
+.nav-bar {
+  height: 69px;
+  font-family: 'Poppins', sans-serif;
+  z-index: 5;
+  background-color: #4a154b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-left {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  justify-content: flex-start;
+}
+
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 40%;
+}
+
+.nav-bar a {
+  text-decoration: none;
+}
+
+.channel-logo {
+  padding-right: 5px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  bottom: 2px;
+  z-index: 5;
+}
+
+.nav-home-link {
+  margin-left: 8%;
+  font-weight: 900;
+  font-size: 25px;
+  display: flex;
+}
+
+.logo-text {
+  padding-left: 7px;
+  padding-top: 7px;
+  color: white;
+  font-weight: 900;
+}
+
+.nav-signup-link {
+  font: 14px sans-serif;
+  color: white;
+  padding: 12px 15px;
+  background-color: #611f69;
+  margin-right: 5%;
+  border-radius: 5px;  
+}
+
+.nav-login-link {
+  font: 16px sans-serif;
+  color: white;
+  padding-right: 20px;
+  border-radius: 5px;  
+}
+
+.nav-login-link:hover {
+  text-decoration: underline;
+}
