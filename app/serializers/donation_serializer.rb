@@ -1,3 +1,3 @@
 class DonationSerializer < ActiveModel::Serializer
-  attributes :amount, :message
+  attributes :amount, :pet_id, :user_id
 end 
