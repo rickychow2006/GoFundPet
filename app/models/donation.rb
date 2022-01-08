@@ -2,5 +2,5 @@ class Donation < ApplicationRecord
   belongs_to :pet
   belongs_to :user 
 
-  validates :amount, :message, presence:true
+  validates :amount, presence:true
 end
