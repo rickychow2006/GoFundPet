@@ -1,6 +1,6 @@
 # GoFundPet
 
-PetFundr is a web application that allows users to login and view pets in need of funding for medical expenses. The user can view a list of pets, and select a pet to support. 
+Go Fund Pet is a web application that allows users to login and view pets in need of funding for medical expenses. The user can view a list of pets, and select a pet to support. 
 
 ## Usage
 
