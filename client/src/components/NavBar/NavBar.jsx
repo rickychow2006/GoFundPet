@@ -27,11 +27,14 @@ const NavBar = ( {user}) => {
 
     <div className='navbar-right'>
       {!user ? (
-        <Link to='/login' className='nav-login-link'>Sign In</Link>) : null }
+        <Link to='/login' className='nav-login-link'>Sign In</Link> ) : (null)}
       {!user ? (
         <Link to='/signup' className='nav-signup-link'>Get Started</Link>) : 
         <Link to='/' className='nav-signup-link' onClick={handleLogout}> Logout</Link> }
     </div>
+
+
+
   </nav>
   )
 }

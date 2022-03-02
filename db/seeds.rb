@@ -17,3 +17,12 @@ dee.pets.create([{name: 'Bones', age: 5, image: 'https://images.everydayhealth.c
 
 john.pets.create(name: 'Thumper', age: 2, image: 'https://dogbreedersguide.com/wp-content/uploads/2014/11/Pomeranian-Cute-Dog-200x200.png', cause: 'Diabetes', goal: 250)
 jane.pets.create(name: 'Tango', age: 4, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWKMLTT2aDVUkPD5HXyDEQ2TAuKj2UHi33rA&usqp=CAU', cause: 'Stage 3 kidney disease', goal: 250)
+
+jane.pets.create(name: 'Happy', age: 3, image: 'https://downeast.com/wp-content/uploads/2019/05/1907_Dogs20b-200x200.jpg', cause: 'Ringworm', goal: 1400)
+
+jane.pets.create(name: 'Tinny', age: 5, image: 'https://www.seasidehillcrest.com/wp-content/uploads/elementor/thumbs/french-bulldog-summer-smile-joy-160846-pbs68iyk9uiydonz1hxrat0x8jebwy91monj9icb80.jpeg', cause: 'Stage 2 kidney disease', goal: 1300)
+
+jane.pets.create(name: 'Jelly', age: 10, image: 'https://dollyslegacyanimalrescue.org/wp-content/uploads/2022/01/272591465_3139746596301725_2060049967775908663_n-200x200.jpg', cause: 'Cancer', goal: 8000)
+
+jane.pets.create(name: 'Mello', age: 8, image: 'https://www.skierlawfirm.com/wp-content/uploads/2017/03/AnimalCruel_Cat-200x200.jpg', cause: 'Feline Immunodeficiency Virus', goal: 6000)
+
